@@ -8,32 +8,36 @@
 <body>
   <h1>Recycle.mE</h1>
   <form>
-    <label>
+    <div id="map-me">
       <button type="button" class="find-me-btn">Find my Location</button>
-      <p class="current-location"></p>
-      <p class="lat-long"></p>
-      <select name="nyc-borough" id="drop">
+    </div>
+    <br>
+    <div id="drop">
+      <label class="my-label">
+      <select name="nyc-borough">
         <option class="bin" selected disabled>Choose your borough</option>
         <option class="bin" value="brooklyn">Brooklyn</option>
         <option class="bin" value="bronx">Bronx</option>
         <option class="bin" value="manhanttan">Manhattan</option>
         <option class="bin" value="queens">Queens</option>
       </select>
-    </label>
+      </label>
+    </div>
     <br>
     <br>
-    <input type="text" name="park" placeholder="Park/Site in NYC">
+    <input type="text" id="park-search" placeholder="Park/Site in NYC">
     <button type="submit" id="submit-btn">Submit</button>
   </form>
 
-  <!-- This is where the return data will appear-->
-  <div id="info-container">
-    <p>This is where info will be appended!</p>
-  </div>
-  <!-- Handlebars -->
-  <script id="info-template" type="text/x-handlebars-template">
+    <!-- This is where the return data will appear-->
+    <div id="info-container">
+      <p>This is where info will be appended!</p>
+    </div>
 
-  </script>
+    <!-- Handlebars -->
+    <script id="info-template" type="text/x-handlebars-template">
+
+    </script>
 
   <!--JavaScript sources-->
   <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
