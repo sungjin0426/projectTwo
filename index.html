@@ -6,15 +6,23 @@
   <title>API Project Two</title>
 </head>
 <body>
-  <h1>API Project Two</h1>
+  <h1>Recycle.mE</h1>
   <form>
     <label>
-      <select name="" id="drop">
-        <option class="" selected disabled>Choose your option</option>
+      <button type="button" class="find-me-btn">Find my Location</button>
+      <p class="current-location"></p>
+      <p class="lat-long"></p>
+      <select name="nyc-borough" id="drop">
+        <option class="bin" selected disabled>Choose your borough</option>
+        <option class="bin" value="brooklyn">Brooklyn</option>
+        <option class="bin" value="bronx">Bronx</option>
+        <option class="bin" value="manhanttan">Manhattan</option>
+        <option class="bin" value="queens">Queens</option>
       </select>
     </label>
     <br>
     <br>
+    <input type="text" name="park" placeholder="Park/Site in NYC">
     <button type="submit" id="submit-btn">Submit</button>
   </form>
 
@@ -27,11 +35,9 @@
 
   </script>
 
-  </body>
   <!--JavaScript sources-->
   <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
   <script type="text/javascript" src="main.js"></script>
-  <script type="text/javascript" src="apiKey.js"></script>
-
+  </body>
 </html>
