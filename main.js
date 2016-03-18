@@ -9,18 +9,21 @@ window.onload = function() {
   var parkSearch = document.querySelector('#park-search');
   var subBtn = document.querySelector('#submit-btn');
   var dropdown = document.querySelector('#drop');
+  var nycBorough = document.querySelector('.nyc-borough');
 
   var infoContainer = document.getElementById('info-container');
   infoContainer.style.display = 'none';
   myLabel.style.display = 'none';
   subBtn.style.display = 'none';
   parkSearch.style.display = 'none';
+
+  //City's public recyclbin api from nyc opendata
   var query = 'https://data.cityofnewyork.us/resource/sxx4-xhzg.json';
 
   // determine the current position
   // received direction from Mozilla MDN
   findMeBtn.addEventListener("click", function(event){
-  console.log("Find me where i am!");
+  console.log("Find where i am!");
   var mapMe = document.querySelector('#map-me');
   if (!navigator.geolocation){
     mapMe.innerHTML = "<p>Geolocation is not supported by your browser</p>";
