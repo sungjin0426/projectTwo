@@ -10,6 +10,7 @@ window.onload = function() {
   var subBtn = document.querySelector('#submit-btn');
   var dropdown = document.querySelector('#drop');
   var nycBorough = document.querySelector('.nyc-borough');
+  var clickMe = document.querySelector('.click-me');
 
   var infoContainer = document.getElementById('info-container');
   infoContainer.style.display = 'none';
@@ -38,12 +39,14 @@ window.onload = function() {
     var img = new Image();
     img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + myLat + "," + myLong + "&zoom=18&size=250x250&sensor=false";
     mapMe.appendChild(img);
+    clickMe.innerHTML = "My current location is:"
   };
   //if geolocation is failed to load,
   function error() {
     mapMe.innerHTML = "Unable to retrieve your location";
-  };
+  }
     mapMe.innerHTML = "<p>Locating you…</p>";
+    clickMe.innerHTML = "";
     myLabel.style.display = 'block';
     subBtn.style.display = 'block';
     parkSearch.style.display = 'block';
