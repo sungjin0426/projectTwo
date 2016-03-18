@@ -67,17 +67,20 @@ window.onload = function() {
 
 
   //dropdown for borough
-  var boroughDrop = document.querySelector('#borough-nyc').value;
-
-  var findBoroughQuery = baseQuery + "?borough=" + boroughDrop;
 
   document.getElementById('submit-btn').addEventListener('click', function(event){
   event.preventDefault();
+
+  var boroughDrop = document.querySelector('.boroughNYC:checked');
+
+  var findBoroughQuery = baseQuery + "?borough=" + boroughDrop.value;
 
     $.ajax({
       url: findBoroughQuery,
     }).done(function(findBoroughQueryresponse){
       console.log(findBoroughQueryresponse);
+      for (var i = 0; i < findBoroughQueryresponse.length; i++) {
+      }
     }).fail(function(findBoroughQueryresponse){
       console.log("fail");
     }).always(function(findBoroughQueryresponse){
