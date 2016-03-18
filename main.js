@@ -4,6 +4,7 @@
     //by id
   var dropdown = document.querySelector('#drop');
   var mapMe = document.querySelector('#map-me');
+  var myForm = document.querySelector('#my-form');
   var parkSearch = document.querySelector('#park-search');
   var subBtn = document.querySelector('#submit-btn');
   var searchBtn = document.querySelector('#search-btn')
@@ -95,7 +96,7 @@
     var userChosenPark = parkSearch.value.toLowerCase().replace(" ", "%20");
 
     var findParkQuery = baseQuery + "?park_site_name=" + userChosenPark;
-
+  
     $.ajax({
       url: findParkQuery,
     }).done(function(findParkQueryresponse){
