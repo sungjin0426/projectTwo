@@ -9,7 +9,6 @@ window.onload = function() {
   var parkSearch = document.querySelector('#park-search');
   var subBtn = document.querySelector('#submit-btn');
   var dropdown = document.querySelector('#drop');
-  var nycBorough = document.querySelector('.nyc-borough');
   var clickMe = document.querySelector('.click-me');
 
   var infoContainer = document.getElementById('info-container');
@@ -19,7 +18,7 @@ window.onload = function() {
   parkSearch.style.display = 'none';
 
   //City's public recyclbin api from nyc opendata
-  var query = 'https://data.cityofnewyork.us/resource/sxx4-xhzg.json';
+  var baseQuery = 'https://data.cityofnewyork.us/resource/sxx4-xhzg.json';
 
   // determine the current position
   // received direction from Mozilla MDN
@@ -32,6 +31,9 @@ window.onload = function() {
   }
   //if geolocation is successfully loaded,
   function success(position) {
+    myLabel.style.display = 'block';
+    subBtn.style.display = 'block';
+    parkSearch.style.display = 'block';
     var myLat  = position.coords.latitude;
     var myLong = position.coords.longitude;
     mapMe.innerHTML = '<p>Latitude is: ' + myLat + '° <br>Longitude is: ' + myLong + '°</p>';
@@ -40,6 +42,18 @@ window.onload = function() {
     img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + myLat + "," + myLong + "&zoom=18&size=250x250&sensor=false";
     mapMe.appendChild(img);
     clickMe.innerHTML = "My current location is:"
+
+    $.ajax({
+      url: baseQuery,
+      dataType: 'json'
+    }).done(function(response){
+      console.log(response);
+
+    }).fail(function(response){
+      console.log("fail");
+    }).always(function(response){
+      console.log("always running");
+    }); // end query
   };
   //if geolocation is failed to load,
   function error() {
@@ -47,33 +61,29 @@ window.onload = function() {
   }
     mapMe.innerHTML = "<p>Locating you…</p>";
     clickMe.innerHTML = "";
-    myLabel.style.display = 'block';
-    subBtn.style.display = 'block';
-    parkSearch.style.display = 'block';
     navigator.geolocation.getCurrentPosition(success, error);
   });
+
+
+
+  //dropdown for borough
+  var boroughDrop = document.querySelector('#borough-nyc').value;
+
+  var findBoroughQuery = baseQuery + "?borough=" + boroughDrop;
 
   document.getElementById('submit-btn').addEventListener('click', function(event){
   event.preventDefault();
 
     $.ajax({
-      url: query,
-      dataType: 'json'
-    }).done(function(response){
-      console.log(response);
-    }).fail(function(response){
+      url: findBoroughQuery,
+    }).done(function(findBoroughQueryresponse){
+      console.log(findBoroughQueryresponse);
+    }).fail(function(findBoroughQueryresponse){
       console.log("fail");
-    }).always(function(response){
+    }).always(function(findBoroughQueryresponse){
       console.log("always running");
     }); // end query
-  });
 
-  //   $.ajax({
-  //     url: query
-  //   }).done(function(response){
-  //     console.log(response);
-  //   }).fail(function(response){
-  //     console.log(peopleQueryResponse);
-  //   }).always(function(response){
-  //   }); // end query
-  };
+  });// end click fxn
+
+};
