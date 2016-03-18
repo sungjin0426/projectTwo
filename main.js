@@ -7,7 +7,7 @@
   var myForm = document.querySelector('#my-form');
   var parkSearch = document.querySelector('#park-search');
   var subBtn = document.querySelector('#submit-btn');
-  var searchBtn = document.querySelector('#search-btn')
+  var searchBtn = document.querySelector('#search-btn');
     //by class
   var clickMe = document.querySelector('.click-me');
   var foundMe = document.querySelector('.current-location');
@@ -28,6 +28,8 @@
   // determine the current position
   // received direction from Mozilla MDN
   findMeBtn.addEventListener("click", function(event){
+  event.preventDefault();
+
   console.log("Find where i am!");
   var mapMe = document.querySelector('#map-me');
   if (!navigator.geolocation){
@@ -46,7 +48,7 @@
     var img = new Image();
     img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + myLat + "," + myLong + "&zoom=18&size=250x250&sensor=false";
     mapMe.appendChild(img);
-    clickMe.innerHTML = "My current location is:"
+    clickMe.innerHTML = "My current location is:";
 
     $.ajax({
       url: baseQuery,
@@ -59,7 +61,7 @@
     }).always(function(response){
       console.log("always running");
     }); // end query
-  };
+  }
   //if geolocation is failed to load,
   function error() {
     mapMe.innerHTML = "Unable to retrieve your location";
@@ -71,6 +73,8 @@
 
   //dropdown for borough
   document.getElementById('submit-btn').addEventListener('click', function(event){
+  event.preventDefault();
+
   parkSearch.style.display = 'block';
   searchBtn.style.display = 'block';
   subBtn.remove();
@@ -90,17 +94,32 @@
     }); // end query
   });// end submit click fxn
 
-  //seaching parks' recycle bin in NYC through the borough
+  // //seaching parks' recycle bin in NYC through the borough
   document.getElementById('search-btn').addEventListener('click', function(event){
+  event.preventDefault();
+  console.log("Search button is being clicked");
+  findMeBtn.remove();
+  searchBtn.remove();
+  myLabel.remove();
+  parkSearch.remove();
 
-    var userChosenPark = parkSearch.value.toLowerCase().replace(" ", "%20");
+  var userChosenPark = parkSearch.value.toLowerCase().replace(" ", "%20");
+  var findParkQuery = baseQuery + "?park_site_name=" + userChosenPark;
 
-    var findParkQuery = baseQuery + "?park_site_name=" + userChosenPark;
-  
     $.ajax({
       url: findParkQuery,
     }).done(function(findParkQueryresponse){
       console.log(findParkQueryresponse);
+      for (var i = 0; i < findParkQueryresponse.length; i++ ) {
+        if (parkSearch.value == findParkQueryresponse[i].park_site_name) {
+          var newEl = document.createElement('p');
+          newEl.innerHTML = "NYC Park: " + parkSearch.value + " @" + findParkQueryresponse[i].borough;
+          dropdown.appendChild(newEl);
+          console.log("I am at " + parkSearch.value + " @" + findParkQueryresponse[i].borough);
+          console.log("I found recycle bin! @" + parkSearch.value + ", " + findParkQueryresponse.borough);
+        }
+      }
+
     }).fail(function(findParkQueryresponse){
       console.log("fail");
     }).always(function(findParkQueryresponse){
