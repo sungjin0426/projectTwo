@@ -15,8 +15,8 @@
   var latLong = document.querySelector('.lat-long');
   var myLabel = document.querySelector('.my-label');
 
-  var infoContainer = document.getElementById('info-container');
-  infoContainer.style.display = 'none';
+  var recycleInfoContainer = document.getElementById('recycle-info-container');
+  recycleInfoContainer.style.display = 'none';
   myLabel.style.display = 'none';
   parkSearch.style.display = 'none';
   searchBtn.style.display = 'none';
@@ -110,15 +110,12 @@
       url: findParkQuery,
     }).done(function(findParkQueryresponse){
       console.log(findParkQueryresponse);
-      for (var i = 0; i < findParkQueryresponse.length; i++ ) {
-        if (parkSearch.value == findParkQueryresponse[i].park_site_name) {
-          var newEl = document.createElement('p');
-          newEl.innerHTML = "NYC Park: " + parkSearch.value + " @" + findParkQueryresponse[i].borough;
-          dropdown.appendChild(newEl);
-          console.log("I am at " + parkSearch.value + " @" + findParkQueryresponse[i].borough);
-          console.log("I found recycle bin! @" + parkSearch.value + ", " + findParkQueryresponse.borough);
-        }
-      }
+
+      var parkTemplateSource = document.querySelector('#recycle-info-template').innerHTML;
+      var parkTemplate = Handlebars.compile(parkTemplateSource);
+      var parkComputedHtml = parkTemplate(findParkQueryresponse);
+      document.querySelector('#recycle-info-container').innerHTML = parkComputedHtml;
+      recycleInfoContainer.style.display = 'block';
 
     }).fail(function(findParkQueryresponse){
       console.log("fail");

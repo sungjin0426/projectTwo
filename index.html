@@ -18,7 +18,7 @@
       <select id="borough-nyc">
         <option class="boroughNYC" value="Brooklyn">Brooklyn</option>
         <option class="boroughNYC" value="Bronx">Bronx</option>
-        <option class="boroughNYC" value="Manhanttan">Manhattan</option>
+        <option class="boroughNYC" value="Manhattan">Manhattan</option>
         <option class="boroughNYC" value="Queens">Queens</option>
         <option class="boroughNYC" value="Staten Island">Staten Island</option>
       </select>
@@ -31,14 +31,22 @@
   </form>
 
     <!-- This is where the return data will appear-->
-    <div id="info-container">
+    <div id="recycle-info-container">
       <p>This is where info will be appended!</p>
     </div>
-    <div class="recycle-bin-map">
-    </div>
-    <!-- Handlebars -->
-    <script id="info-template" type="text/x-handlebars-template">
 
+    <!-- Handlebars -->
+    <script id="recycle-info-template" type="text/x-handlebars-template">
+    {{#each this}}
+    <h3>Found the Recycle Bin!</h3>
+    <h4>Park: {{park_site_name}}</h4>
+    <h4>Borough: {{this.borough}}</h4>
+    <p>Address: {{this.address}}</p>
+    <p>Site type: {{this.site_type}}</p>
+    <p>Latitude: {{this.latitude}}°</p>
+    <p>Longitude: {{this.longitude}}°</p>
+    <br>
+    {{/each}}
     </script>
 
   <!--JavaScript sources-->
