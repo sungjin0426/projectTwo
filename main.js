@@ -79,12 +79,16 @@
   searchBtn.style.display = 'block';
   subBtn.remove();
 
+  //searching within borough
+  var borough = document.querySelector('.borough');
+
+  //dropdown menu
   var boroughDrop = document.querySelector('.boroughNYC:checked');
 
-  var findBoroughQuery = baseQuery + "?borough=" + boroughDrop.value;
+  borough.innerHTML = "You are in " + boroughDrop.value;
 
-  var borough = document.querySelector('.borough');
-  borough.innerHTML = "You are searching parks within, " + boroughDrop.value;
+  //find borough query
+  var findBoroughQuery = baseQuery + "?borough=" + boroughDrop.value;
 
     $.ajax({
       url: findBoroughQuery,
@@ -108,22 +112,22 @@
 
   var userChosenPark = parkSearch.value.toLowerCase().replace(" ", "%20");
   var findParkQuery = baseQuery + "?park_site_name=" + userChosenPark;
+
     $.ajax({
       url: findParkQuery,
     }).done(function(findParkQueryresponse){
       console.log(findParkQueryresponse);
-
       var parkTemplateSource = document.querySelector('#recycle-info-template').innerHTML;
       var parkTemplate = Handlebars.compile(parkTemplateSource);
       var parkComputedHtml = parkTemplate(findParkQueryresponse);
       document.querySelector('#recycle-info-container').innerHTML = parkComputedHtml;
       recycleInfoContainer.style.display = 'block';
-
     }).fail(function(findParkQueryresponse){
       console.log("fail");
     }).always(function(findParkQueryresponse){
       console.log("always running");
     }); // end query
+
   });// end serch click fxn
 
 };
