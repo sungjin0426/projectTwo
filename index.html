@@ -25,6 +25,7 @@
       </label>
     </div>
     <button type="button" id="submit-btn">Submit</button>
+    <p class="borough"></p>
     <br>
     <input type="text" id="park-search" placeholder="Park/Site in NYC">
     <button type="button" id="search-btn">Find Me</button>
@@ -32,20 +33,22 @@
 
     <!-- This is where the return data will appear-->
     <div id="recycle-info-container">
-      <p>This is where info will be appended!</p>
+      <!-- <p>This is where info will be appended!</p> -->
     </div>
 
     <!-- Handlebars -->
     <script id="recycle-info-template" type="text/x-handlebars-template">
     {{#each this}}
-    <h3>Found the Recycle Bin!</h3>
-    <h4>Park: {{park_site_name}}</h4>
-    <h4>Borough: {{this.borough}}</h4>
-    <p>Address: {{this.address}}</p>
-    <p>Site type: {{this.site_type}}</p>
-    <p>Latitude: {{this.latitude}}°</p>
-    <p>Longitude: {{this.longitude}}°</p>
-    <br>
+    <div class="recycle">
+      <h3>Found the Recycle Bin!</h3>
+      <h4>Park: {{this.park_site_name}}</h4>
+      <h4>Borough: {{this.borough}}</h4>
+      <p>Address: {{this.address}}</p>
+      <p>Site type: {{this.site_type}}</p>
+      <p>Latitude: {{this.latitude}}°</p>
+      <p>Longitude: {{this.longitude}}°</p>
+      <img src="https://maps.googleapis.com/maps/api/staticmap?center={{this.latitude}},{{this.longitude}}&zoom=20&size=200x200&sensor=false" alt="recycle-bin map" />
+    </div>
     {{/each}}
     </script>
 

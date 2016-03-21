@@ -83,6 +83,9 @@
 
   var findBoroughQuery = baseQuery + "?borough=" + boroughDrop.value;
 
+  var borough = document.querySelector('.borough');
+  borough.innerHTML = "You are searching parks within, " + boroughDrop.value;
+
     $.ajax({
       url: findBoroughQuery,
     }).done(function(findBoroughQueryresponse){
@@ -99,13 +102,12 @@
   event.preventDefault();
   console.log("Search button is being clicked");
   findMeBtn.remove();
-  searchBtn.remove();
   myLabel.remove();
   parkSearch.remove();
+  searchBtn.remove();
 
   var userChosenPark = parkSearch.value.toLowerCase().replace(" ", "%20");
   var findParkQuery = baseQuery + "?park_site_name=" + userChosenPark;
-
     $.ajax({
       url: findParkQuery,
     }).done(function(findParkQueryresponse){
