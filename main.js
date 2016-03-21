@@ -79,16 +79,11 @@
   searchBtn.style.display = 'block';
   subBtn.remove();
 
-  //searching within borough
-  var borough = document.querySelector('.borough');
-
-  //dropdown menu
   var boroughDrop = document.querySelector('.boroughNYC:checked');
-
-  borough.innerHTML = "You are in " + boroughDrop.value;
-
-  //find borough query
   var findBoroughQuery = baseQuery + "?borough=" + boroughDrop.value;
+
+  var borough = document.querySelector('.borough');
+  borough.innerHTML = "You are searching parks within, " + boroughDrop.value;
 
     $.ajax({
       url: findBoroughQuery,
@@ -127,7 +122,6 @@
     }).always(function(findParkQueryresponse){
       console.log("always running");
     }); // end query
-
   });// end serch click fxn
 
 };
