@@ -46,7 +46,6 @@
     var myLat  = position.coords.latitude;
     var myLong = position.coords.longitude;
     mapMe.innerHTML = '<p>Latitude is: ' + myLat + '° <br>Longitude is: ' + myLong + '°</p>';
-    mapMe.innerHTML.style.textAlign = 'center';
     console.log(myLat, myLong);
     var img = new Image();
     img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + myLat + "," + myLong + "&zoom=18&size=250x250&sensor=false";
