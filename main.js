@@ -77,7 +77,7 @@
   event.preventDefault();
 
   parkSearch.style.display = 'block';
-  searchBtn.style.display = 'show';
+  searchBtn.style.display = 'block';
   subBtn.remove();
 
   var boroughDrop = document.querySelector('.boroughNYC:checked');
