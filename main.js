@@ -42,10 +42,11 @@
   function success(position) {
     myLabel.style.display = 'inline';
     subBtn.style.display = 'inline';
-    dropdown.style.display= 'visibility';
+    dropdown.style.display= 'inline';
     var myLat  = position.coords.latitude;
     var myLong = position.coords.longitude;
     mapMe.innerHTML = '<p>Latitude is: ' + myLat + '° <br>Longitude is: ' + myLong + '°</p>';
+    mapMe.innerHTML.style.textAlign = 'center';
     console.log(myLat, myLong);
     var img = new Image();
     img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + myLat + "," + myLong + "&zoom=18&size=250x250&sensor=false";
@@ -76,8 +77,8 @@
   document.getElementById('submit-btn').addEventListener('click', function(event){
   event.preventDefault();
 
-  parkSearch.style.display = 'block';
-  searchBtn.style.display = 'block';
+  parkSearch.style.display = 'inline';
+  searchBtn.style.display = 'inline';
   subBtn.remove();
 
   var boroughDrop = document.querySelector('.boroughNYC:checked');
