@@ -1,0 +1,21 @@
+#recycle {
+  float: left;
+  margin: 20px;
+}
+
+body {
+  background: url(../recycle.png) center no-repeat;
+}
+
+#find-me-btn {
+  background-color: grey;
+}
+
+#submit-btn {
+  background-color: grey;
+}
+
+#search-btn {
+  background-color: grey;
+  height: 70px;
+}

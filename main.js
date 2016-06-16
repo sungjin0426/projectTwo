@@ -2,21 +2,22 @@
   console.log("main.js is fully loaded");
   //initial grab
     //by id
-  var dropdown = document.querySelector('#drop');
   var mapMe = document.querySelector('#map-me');
   var myForm = document.querySelector('#my-form');
   var parkSearch = document.querySelector('#park-search');
   var subBtn = document.querySelector('#submit-btn');
   var searchBtn = document.querySelector('#search-btn');
+  var findMeBtn = document.querySelector('#find-me-btn');
+  var dropdown = document.querySelector('#drop');
     //by class
   var clickMe = document.querySelector('.click-me');
   var foundMe = document.querySelector('.current-location');
-  var findMeBtn = document.querySelector('.find-me-btn');
   var latLong = document.querySelector('.lat-long');
   var myLabel = document.querySelector('.my-label');
 
   var recycleInfoContainer = document.getElementById('recycle-info-container');
   recycleInfoContainer.style.display = 'none';
+  dropdown.style.display= 'none';
   myLabel.style.display = 'none';
   parkSearch.style.display = 'none';
   searchBtn.style.display = 'none';
@@ -41,6 +42,7 @@
   function success(position) {
     myLabel.style.display = 'block';
     subBtn.style.display = 'block';
+    dropdown.style.display= 'block';
     var myLat  = position.coords.latitude;
     var myLong = position.coords.longitude;
     mapMe.innerHTML = '<p>Latitude is: ' + myLat + '° <br>Longitude is: ' + myLong + '°</p>';
@@ -55,7 +57,6 @@
       dataType: 'json'
     }).done(function(response){
       console.log(response);
-
     }).fail(function(response){
       console.log("fail");
     }).always(function(response){
@@ -76,7 +77,7 @@
   event.preventDefault();
 
   parkSearch.style.display = 'block';
-  searchBtn.style.display = 'block';
+  searchBtn.style.display = 'show';
   subBtn.remove();
 
   var boroughDrop = document.querySelector('.boroughNYC:checked');

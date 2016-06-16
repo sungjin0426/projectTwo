@@ -2,44 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>recycle.mE nyC</title>
 </head>
 <body>
-  <h1>Recycle.mE nyC</h1>
-  <p class="click-me">Click below to locate yourself</p>
+  <h1 class="center">recycle.mE nyC</h1>
+  <p class="center click-me">Click below to locate yourself</p>
   <form id="my-form">
-    <div id="map-me">
-      <button type="button" class="find-me-btn">Find my Location</button>
+    <div id="map-me" class="center">
+      <button type="button" id="find-me-btn" class="btn waves-effect waves-light">Find my Location</button>
     </div>
     <br>
-    <div id="drop">
-      <label class="my-label">
-      <select id="borough-nyc">
+    <div id="drop" class="center">
+      <label class="my-label">Choose your borough</label>
+      <select class="browser-default">
         <option class="boroughNYC" value="Brooklyn">Brooklyn</option>
         <option class="boroughNYC" value="Bronx">Bronx</option>
         <option class="boroughNYC" value="Manhattan">Manhattan</option>
         <option class="boroughNYC" value="Queens">Queens</option>
         <option class="boroughNYC" value="Staten Island">Staten Island</option>
       </select>
-      </label>
     </div>
-    <button type="button" id="submit-btn">Submit</button>
-    <p class="borough"></p>
     <br>
-    <input type="text" id="park-search" placeholder="Park/Site in NYC">
-    <button type="button" id="search-btn">Find Me</button>
+    <div class="center">
+      <button type="button" id="submit-btn" class="btn waves-effect waves-light" name="action">Submit
+        <i class="material-icons">loop</i>
+      </button>
+    </div>
+    <p class="center borough"></p>
+    <br>
+    <input type="text" id="park-search" class="center" placeholder="Park/Site in NYC">
+    <div class="center">
+      <button type="button" id="search-btn" class="btn waves-effect waves-light" name="action">Find the Bin
+      <br><i class="large material-icons">language</i>
+      </button>
+    </div>
   </form>
 
     <!-- This is where the return data will appear-->
-    <div id="recycle-info-container">
+    <div id="recycle-info-container" class="center">
       <!-- <p>This is where info will be appended!</p> -->
     </div>
 
     <!-- Handlebars -->
     <script id="recycle-info-template" type="text/x-handlebars-template">
     {{#each this}}
-    <div class="recycle">
+    <div class="center recycle">
       <h3>Found the Recycle Bin!</h3>
       <h4>Park: {{this.park_site_name}}</h4>
       <h4>Borough: {{this.borough}}</h4>
@@ -47,7 +61,7 @@
       <p>Site type: {{this.site_type}}</p>
       <p>Latitude: {{this.latitude}}°</p>
       <p>Longitude: {{this.longitude}}°</p>
-      <img src="https://maps.googleapis.com/maps/api/staticmap?center={{this.latitude}},{{this.longitude}}&zoom=20&size=200x200&sensor=false" alt="recycle-bin map" />
+      <img width="600" src="http://maps.googleapis.com/maps/api/staticmap?center={{this.latitude}},{{this.longitude}}&zoom=20&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0x20a700%7Clabel:1%7C{{this.latitude}},{{this.longitude}}" alt="recycle-bin map">
     </div>
     {{/each}}
     </script>
@@ -56,5 +70,6 @@
   <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
   <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
   </body>
 </html>
