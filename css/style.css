@@ -5,6 +5,7 @@
 
 body {
   background: url(../recycle.png) center no-repeat;
+  text-align: center;
 }
 
 #find-me-btn {
