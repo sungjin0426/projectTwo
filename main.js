@@ -67,7 +67,7 @@
   function error() {
     mapMe.innerHTML = "Unable to retrieve your location";
   }
-    mapMe.innerHTML = "<p>Locating you…</p>";
+    mapMe.innerHTML = "<p class="center">Locating you…</p>";
     clickMe.innerHTML = "";
     navigator.geolocation.getCurrentPosition(success, error);
   });
