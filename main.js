@@ -40,9 +40,9 @@
 
   //if geolocation is successfully loaded,
   function success(position) {
-    myLabel.style.display = 'block';
-    subBtn.style.display = 'block';
-    dropdown.style.display= 'block';
+    myLabel.style.display = 'inline';
+    subBtn.style.display = 'inline';
+    dropdown.style.display= 'visibility';
     var myLat  = position.coords.latitude;
     var myLong = position.coords.longitude;
     mapMe.innerHTML = '<p>Latitude is: ' + myLat + '° <br>Longitude is: ' + myLong + '°</p>';
